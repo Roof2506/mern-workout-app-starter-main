@@ -10,15 +10,17 @@ const Home = () => {
 
   useEffect(() => {
     const fetchWorkouts = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/workouts`)
-
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/workouts`);
+  
       if (response.ok) {
-        dispatch({type: 'SET_WORKOUTS', payload: json})
+        const json = await response.json(); 
+        dispatch({ type: 'SET_WORKOUTS', payload: json });
       }
-    }
-
-    fetchWorkouts()
-  }, [dispatch])
+    };
+  
+    fetchWorkouts();
+  }, [dispatch]);
+  
 
   return (
     <div className="home">

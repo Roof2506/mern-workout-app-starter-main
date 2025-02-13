@@ -10,8 +10,9 @@ export const useLogin = () => {
     setIsLoading(true)
     setError(null)
     console.log("API URL:", process.env.REACT_APP_API_URL);
+    const baseUrl = process.env.REACT_APP_API_URL.replace(/\/$/, "")
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user/login`, {
+    const response = await fetch(`${baseUrl}/api/user/login`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ email, password })

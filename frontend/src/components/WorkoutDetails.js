@@ -7,13 +7,14 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutsContext()
   const { user } = useAuthContext()
+  const baseUrl = process.env.REACT_APP_API_URL.replace(/\/$/, "")
 
   const handleClick = async () => {
     if (!user) {
       return
     }
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/workouts/` + workout._id, {
+    const response = await fetch(`${baseUrl}/api/workouts/` + workout._id, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${user.token}`
